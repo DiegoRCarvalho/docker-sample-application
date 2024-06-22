@@ -25,5 +25,13 @@ RUN apk add --no-cache python2 g++ make
 # Inseri na imagem, a variável de ambiente que estamos passando. ENV key=value
 # ENV API_URL=https://api.test.com/
 
+# Depois que a imagem é iniciada e todas as dependências instaladas, devemos executar o aplicativo.
+# O RUN é executado apenas na construção da imagem, o CMD é executado sempre que inicializamos a imagem.
+# CMD ["Executável" , "Parâmetros"]
+CMD [ "node", "src/index.js" ]
+
+
+
+
 # Indica a porta aberta no container
 EXPOSE 3000
