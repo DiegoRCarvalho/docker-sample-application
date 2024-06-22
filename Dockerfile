@@ -24,3 +24,6 @@ RUN apk add --no-cache python2 g++ make
 
 # Inseri na imagem, a variável de ambiente que estamos passando. ENV key=value
 # ENV API_URL=https://api.test.com/
+
+# Indica a porta aberta no container
+EXPOSE 3000
