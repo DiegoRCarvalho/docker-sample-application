@@ -64,9 +64,10 @@ docker image load -i app-v1.0.1.tar
 - -p: definir a porta da maquina:container.
 - -d: roda em plano de fundo, sem prender o terminal.
 - --name: permite escolher um nome para o container.
+- -v: adiciona um volume.
 
 ```bash
-docker run -p 53000:3000 -d --name app-v1.0.0 app:v1.0.0
+docker run -p 53000:3000 -d --name app-v1.0.0 -v app-dados:/app/dados app:v1.0.0 
 ```
 
 ### Verificar log de eventos
@@ -83,4 +84,18 @@ docker logs 4a71c9a8
 
 # Logs com timestamp
 docker logs -t 4a71c9a8
+```
+
+### Iniciar e parar um container
+
+```bash
+docker stop 4a71c9a8
+docker start 4a71c9a8
+```
+
+### Remover um container
+
+```bash
+docker ps -a
+docker rm -f 4a71c9a8
 ```
