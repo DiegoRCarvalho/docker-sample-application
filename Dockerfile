@@ -13,10 +13,11 @@ WORKDIR /app
 # Informar ao Docker qual usuário irá executar os comandos a partir daqui.
 # USER nomeusuario
 
-# Copia todos os arquivos do diretório app da minha máquina para o diretório app da imagem.
-# Como informamos a variável WORKDIR acima, podemos referenciar o diretório de trabalho apenas informando um ponto(.).
-# O comando abaixo copia o primeiro ponto, ou seja, tudo que está no diretório de trabalho da minha máquina, e cola no segundo ponto que significa o diretório de trabalho da imagem.
-COPY . .
+# Para melhorar a performace, nesse trecho iremos copiar apenas o package.json, se houver alterações nele o Docker irá entender que deve rodar novamente
+# as instalações abaixo, caso contrário irá utilizar o que está no cache da instalação anterior e irá pular direto para o comando de cópia. Dessa forma,
+# a construção da imagem será muito mais rápida e não vai reinstalar as bibliotecas quando mudarmos o código fonte da aplicação, a reinstalação só vai 
+# ocorrer se adicionarmos alterações no package.json 
+COPY package.json .
 
 # Caso o arquivo que desejamos copiar não esteja na nossa máquima, mas sim na internet, então devemos usar o comando ADD ao invés do copy.
 # ADD https://microsoft.com/test.json /app/
@@ -33,6 +34,11 @@ RUN apk add --no-cache python2 g++ make
 
 # O yarn é necessário para rodar a aplicação e eu me esqueci de passar essa instrução anteriormente.
 RUN yarn install --production
+
+# Copia todos os arquivos do diretório app da minha máquina para o diretório app da imagem.
+# Como informamos a variável WORKDIR acima, podemos referenciar o diretório de trabalho apenas informando um ponto(.).
+# O comando abaixo copia o primeiro ponto, ou seja, tudo que está no diretório de trabalho da minha máquina, e cola no segundo ponto que significa o diretório de trabalho da imagem.
+COPY . .
 
 # Inseri na imagem, a variável de ambiente que estamos passando. ENV key=value
 # ENV API_URL=https://api.test.com/
