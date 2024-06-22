@@ -27,3 +27,17 @@ docker run -p 53000:3000 app
 ## Acessar a aplicação
 
 A partir de agora posso acessar a aplicação através de um browser indicando o endereço http://localhost:53000/
+
+## Alterar a TAG de uma imagem
+
+Alteramos a tag que por padrão é criada como latest para v1.0.0.
+
+```bash
+docker image tag app:latest app:v1.0.0
+```
+
+## Criar novas versões
+
+```bash
+docker build -t app:v1.0.1 .
+```
