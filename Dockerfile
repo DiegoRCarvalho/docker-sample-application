@@ -22,6 +22,9 @@ COPY . .
 # O parâmetro --no-cache é para apagar o instalador após  finalizar a instalação.
 RUN apk add --no-cache python2 g++ make
 
+# O yarn é necessário para rodar a aplicação e eu me esqueci de passar essa instrução anteriormente.
+RUN yarn install --production
+
 # Inseri na imagem, a variável de ambiente que estamos passando. ENV key=value
 # ENV API_URL=https://api.test.com/
 
