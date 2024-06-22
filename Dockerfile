@@ -16,3 +16,8 @@ COPY . .
 
 # Outra funcionalidade do ADD é descompactar arquivos que estão em nossa máquina e colar o conteúdo na imagem.
 # ADD /home/diego/test.zip /app/
+
+# Para a aplicação rodar, precisamos instalar no S.O. da imagem os pacotes: python2, g++ e make
+# Para instalar um pacote no Alpine o gerenciador de pacotes é o apk, no Ubuntu o apt e no Fedora o yum.
+# O parâmetro --no-cache é para apagar o instalador após  finalizar a instalação.
+RUN apk add --no-cache python2 g++ make
