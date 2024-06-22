@@ -21,3 +21,6 @@ COPY . .
 # Para instalar um pacote no Alpine o gerenciador de pacotes é o apk, no Ubuntu o apt e no Fedora o yum.
 # O parâmetro --no-cache é para apagar o instalador após  finalizar a instalação.
 RUN apk add --no-cache python2 g++ make
+
+# Inseri na imagem, a variável de ambiente que estamos passando. ENV key=value
+# ENV API_URL=https://api.test.com/
