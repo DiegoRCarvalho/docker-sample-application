@@ -40,4 +40,17 @@ docker image tag app:latest app:v1.0.0
 
 ```bash
 docker build -t app:v1.0.1 .
+docker run -p 53000:3000 app:v1.0.1
+```
+
+## Criar um backup da imagem
+
+```bash
+docker image save -o app-v1.0.1.tar app:v1.0.0
+```
+
+## Carregar um imagem de um backup
+
+```bash
+docker image load -i app-v1.0.1.tar
 ```
